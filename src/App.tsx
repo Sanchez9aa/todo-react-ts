@@ -1,10 +1,11 @@
-import React, { FC } from 'react';
+import React from 'react';
+import Main from './components/main/Main';
 
-const App: FC =() => {
+const App = () => {  
   return (
-    <div className="App">
-      <h1>ToDo</h1>
-    </div>
+    <>
+      <Main/> 
+    </>
   );
 }
 
