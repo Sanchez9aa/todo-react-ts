@@ -1,15 +1,26 @@
 import React, { FC } from 'react'
 import {TaskModel} from '../taskList/model'
 import {StyledSingleTask} from './task.style'
+import {AiFillDelete, AiOutlineCheck} from 'react-icons/ai'
+import {FiType} from 'react-icons/fi'
 
-interface SingeTask {
-  x: TaskModel
+interface Props {
+  task: TaskModel,
+  handleIsDone: any
 }
 
-
-const Task: FC<SingeTask> = ({x}) => {
+const Task: FC<Props> = ({task, handleIsDone}) => {
+  console.log(task)
   return (
-    <StyledSingleTask id={x.id} done={x.isDone}>{x.task}</StyledSingleTask>
+    <>
+    {
+      task.isDone ? (
+        <StyledSingleTask id={task.id}><s>{task.task}</s><AiFillDelete/> <span><AiOutlineCheck onClick={() => handleIsDone(task.id)}/></span> <span><FiType/></span></StyledSingleTask>
+      ): (
+        <StyledSingleTask id={task.id}><span>{task.task}</span><AiFillDelete/> <span><AiOutlineCheck onClick={() => handleIsDone(task.id)}/></span> <span><FiType/></span></StyledSingleTask>
+      )
+    }
+    </>
   )
 }
 
