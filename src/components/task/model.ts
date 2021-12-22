@@ -2,6 +2,6 @@ import {TaskModel} from '../taskList/model'
 
 export type Props = {
   task: TaskModel,
-  setTasks: any,
+  setTasks: React.Dispatch<React.SetStateAction<TaskModel[]>>,
   tasks: TaskModel[]
 }
