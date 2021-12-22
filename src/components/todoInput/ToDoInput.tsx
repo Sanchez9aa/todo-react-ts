@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { TodoDiv } from './todoInput.style'
+import { TodoForm } from './todoInput.style'
 import { Props } from './model'
 import { v4 as uuidv4 } from 'uuid';
 
@@ -19,12 +19,12 @@ const ToDoInput: FC<Props> = ({task, setTask, setTasks, tasks}) => {
     }
 
     return (
-        <TodoDiv >
+        <TodoForm onSubmit={(e: React.FormEvent) => handleAdd(e)}>
             <input placeholder="Enter a task" value={task} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}/>
             <button onClick={(e:React.FormEvent) => handleAdd(e)}>
                 Add
             </button>
-        </TodoDiv>
+        </TodoForm>
     )
 }
 
