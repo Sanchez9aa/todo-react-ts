@@ -1,7 +1,9 @@
 import React, { FC } from 'react'
-import { TodoForm } from './todoInput.style'
-import { Props } from './model'
 import { v4 as uuidv4 } from 'uuid';
+//Importing styles
+import { TodoForm } from './todoInput.style'
+//Importing types
+import { Props } from './model'
 
 
 const ToDoInput: FC<Props> = ({task, setTask, setTasks, tasks}) => {
