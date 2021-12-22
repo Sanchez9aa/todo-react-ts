@@ -6,5 +6,5 @@ export interface TaskModel{
 
 export type Tasks =  {
   tasks: TaskModel[],
-  setTasks: any,
+  setTasks: React.Dispatch<React.SetStateAction<TaskModel[]>>,
 }
