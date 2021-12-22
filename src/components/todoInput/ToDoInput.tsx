@@ -1,6 +1,8 @@
-import React, { FC, useRef } from 'react'
-import { TodoInputStyle, AddTask, TodoDiv } from './todoInput.style'
-import {Props} from './model'
+import React, { FC } from 'react'
+import { TodoDiv } from './todoInput.style'
+import { Props } from './model'
+import { v4 as uuidv4 } from 'uuid';
+
 
 const ToDoInput: FC<Props> = ({task, setTask, setTasks, tasks}) => {
 
@@ -10,21 +12,18 @@ const ToDoInput: FC<Props> = ({task, setTask, setTasks, tasks}) => {
 
     const handleAdd = (e:React.FormEvent): void => {
         e.preventDefault()
-        input.current?.blur()
         if(task){
-            setTasks([ ...tasks, {id: Date.now(), task, isDone: false}])
-            setTask("")
+            setTasks([ ...tasks, {id: uuidv4(), task, isDone: false}])   
         }
+        setTask("")
     }
 
-    const input = useRef<HTMLInputElement>(null)
-
     return (
-        <TodoDiv>
-            <TodoInputStyle ref={input} placeholder="Enter a task" onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}/>
-            <AddTask onClick={(e:React.FormEvent) => handleAdd(e)}>
+        <TodoDiv >
+            <input placeholder="Enter a task" value={task} onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleChange(e)}/>
+            <button onClick={(e:React.FormEvent) => handleAdd(e)}>
                 Add
-            </AddTask>
+            </button>
         </TodoDiv>
     )
 }
