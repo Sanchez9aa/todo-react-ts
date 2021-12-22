@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { MainBody, MainTitle, GlobalStyles } from './main.styles'
+import { MainBody, GlobalStyles } from './main.styles'
 import ToDoInput from '../todoInput/ToDoInput';
 import {TaskModel} from '../taskList/model'
 import TaskList from '../taskList/TaskList';
@@ -14,7 +14,7 @@ const Main: FC = () => {
     <>
       <GlobalStyles />
       <MainBody>
-        <MainTitle>To Do</MainTitle>
+        <h1>To Do</h1>
         <ToDoInput task={task} setTask={setTask} setTasks={setTasks} tasks={tasks} />
         <TaskList tasks={tasks} setTasks={setTasks}/>
       </MainBody>
