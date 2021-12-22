@@ -1,25 +1,77 @@
-import React, { FC } from 'react'
-import {TaskModel} from '../taskList/model'
-import {StyledSingleTask} from './task.style'
-import {AiFillDelete, AiOutlineCheck} from 'react-icons/ai'
-import {FiType} from 'react-icons/fi'
+import React, { FC, useState } from 'react'
+import { StyledSingleTask, SvgWrapper } from './task.style'
+import { AiFillDelete, AiOutlineCheck } from 'react-icons/ai'
+import { FiType } from 'react-icons/fi'
+import { Props } from './model'
+import { TaskModel } from '../taskList/model'
 
-interface Props {
-  task: TaskModel,
-  handleIsDone: any
-}
 
-const Task: FC<Props> = ({task, handleIsDone}) => {
-  console.log(task)
+const Task: FC<Props> = ({ task, setTasks, tasks }) => {
+  console.log(tasks)
+
+  const [edit, setEdit] = useState<boolean>(false)
+  const [editTask, setEditTask] = useState<string>(task.task)
+
+  const handleIsDone = (id: string) => {
+    setTasks(
+      tasks.map((task: TaskModel) =>
+        task.id === id ? { ...task, isDone: !task.isDone } : task
+      )
+    )
+  }
+
+  const handleDelete = (id: string) => {
+    setTasks(
+      tasks.filter((task) =>
+        task.id !== id
+      )
+    )
+  }
+
+  const handleUpdate = (e: React.FormEvent, editTask: string, id: string) => {
+    e.preventDefault()
+    setTasks(
+      tasks.map((task) => {
+        if (task.id !== id) {
+          return task
+        } else {
+          return { ...task, task: editTask }
+        }
+      })
+    )
+    setEdit(!edit)
+  }
+
+  const handleEditTask = (e: React.FormEvent<HTMLInputElement>) => {
+    setEditTask(e.currentTarget.value)
+  }
+
   return (
     <>
-    {
-      task.isDone ? (
-        <StyledSingleTask id={task.id}><s>{task.task}</s><AiFillDelete/> <span><AiOutlineCheck onClick={() => handleIsDone(task.id)}/></span> <span><FiType/></span></StyledSingleTask>
-      ): (
-        <StyledSingleTask id={task.id}><span>{task.task}</span><AiFillDelete/> <span><AiOutlineCheck onClick={() => handleIsDone(task.id)}/></span> <span><FiType/></span></StyledSingleTask>
-      )
-    }
+      <form onSubmit={(e) => handleUpdate(e, editTask, task.id)}>
+        <StyledSingleTask>
+          {
+            edit
+              ? <input value={editTask} onChange={(e: React.FormEvent<HTMLInputElement>) => handleEditTask(e)} />
+              : task.isDone ? (
+                <span>
+                  <s>{task.task}</s>
+                </span>
+              ) : (
+                  <span>{task.task}</span>
+              )
+          }
+          <SvgWrapper>
+            <AiFillDelete onClick={() => handleDelete(task.id)} />
+            <AiOutlineCheck onClick={() => handleIsDone(task.id)} />
+            <FiType onClick={() => {
+              if (!edit && !task.isDone) {
+                setEdit(!edit)
+              }
+            }} />
+          </SvgWrapper>
+        </StyledSingleTask>
+      </form>
     </>
   )
 }
