@@ -1,28 +1,17 @@
-import React, { FC } from 'react'
-import { TaskModel } from './model'
-import { StyledTask } from './TaskList.style'
+import React, { FC, useState } from 'react'
+//Importing components
 import Task from '../task/Task'
-
-interface Tasks {
-  tasks: TaskModel[],
-  setTasks: any,
-}
+//Importing Styles
+import { StyledTask } from './TaskList.style'
+//Importing types
+import { Tasks } from './model'
 
 const TaskList: FC<Tasks> = ({ tasks, setTasks }) => {
 
-  const handleIsDone = (id: number) => {
-    console.log()
-    setTasks(
-      tasks.map((task: TaskModel) => 
-        task.id === id ? {...task, isDone: !task.isDone} : task
-      )
-    )
-  }
   return (
-    <StyledTask>
-      {console.log(tasks)}
-      {tasks.map(x => <Task key={x.id} task={x} handleIsDone={handleIsDone}/>)}
-    </StyledTask>
+      <StyledTask>
+        {tasks.map(x => <Task key={x.id} task={x} setTasks={setTasks} tasks={tasks}/>)}
+      </StyledTask>
   )
 }
 
