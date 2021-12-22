@@ -1,8 +1,11 @@
 import React, { FC, useState } from 'react';
-import { MainBody, GlobalStyles } from './main.styles'
+//Importing components
 import ToDoInput from '../todoInput/ToDoInput';
-import {TaskModel} from '../taskList/model'
 import TaskList from '../taskList/TaskList';
+//Importing styles
+import { MainBody, GlobalStyles } from './main.styles'
+//Importing Types
+import {TaskModel} from '../taskList/model'
 
 
 const Main: FC = () => {
