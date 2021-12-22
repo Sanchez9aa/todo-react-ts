@@ -7,7 +7,6 @@ import { TaskModel } from '../taskList/model'
 
 
 const Task: FC<Props> = ({ task, setTasks, tasks }) => {
-  console.log(tasks)
 
   const [edit, setEdit] = useState<boolean>(false)
   const [editTask, setEditTask] = useState<string>(task.task)
