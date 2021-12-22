@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const TodoDiv = styled.div`
+export const TodoForm = styled.form`
     display: flex;
     width: 100%;
     padding: 20px;
