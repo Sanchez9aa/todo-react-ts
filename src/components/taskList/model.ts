@@ -1,6 +1,10 @@
 export interface TaskModel{
-  id: number,
+  id: string,
   task: string,
   isDone: boolean 
 }
 
+export type Tasks =  {
+  tasks: TaskModel[],
+  setTasks: any,
+}
