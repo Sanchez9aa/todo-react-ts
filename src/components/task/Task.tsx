@@ -1,7 +1,10 @@
 import React, { FC, useState } from 'react'
+//Importing styles
 import { StyledSingleTask, SvgWrapper } from './task.style'
+//Importing icons
 import { AiFillDelete, AiOutlineCheck } from 'react-icons/ai'
 import { FiType } from 'react-icons/fi'
+//Importing types
 import { Props } from './model'
 import { TaskModel } from '../taskList/model'
 
