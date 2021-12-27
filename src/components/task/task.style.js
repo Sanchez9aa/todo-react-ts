@@ -5,10 +5,10 @@ export const StyledSingleTask = styled.div`
   font-size: 24px;
   color:#111;
   padding: 10px 20px;
-  margin: 15px 10px;
+  margin: 15px auto;
   display:flex;
   justify-content:space-evenly;
-  align-center:center;
+  align-items:center;
   max-width: 1100px;
   border-radius: 10px;
   width: 100%;
@@ -16,13 +16,17 @@ export const StyledSingleTask = styled.div`
   span{
     font-size: 21px;
     margin: 0 5px;
-    flex: 2;
+    flex: 5;
   }
 
   s{
     margin: 0 5px;
     font-size: 21px;
-    flex: 2;
+    flex: 5;
+  }
+
+  @media screen and (max-width: 480px){
+    width: 90%;
   }
 
 `
